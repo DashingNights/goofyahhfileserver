@@ -14,7 +14,7 @@ export default class dbms{
                 c.log(`${err}`);
             }
             if (rows.length === 0) {
-                c.error("No user found");
+                c.error("User not found");
             } else {
                 c.log("User found");
             }
