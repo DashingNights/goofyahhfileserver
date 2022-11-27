@@ -8,7 +8,6 @@ A Goofy ahh Fileserver (i need help)
 
 > ✅: currently complete || 🚧: in progress || ❌: not started at all
 >> ✅🚧: Done but needs improvement || ❌🚧: Not complete but in progress
-
 - [✅🚧] Credentials Database
 - [❌🚧] Fetch credentials from database
 - [✅🚧] Handle Request routes
@@ -20,3 +19,4 @@ A Goofy ahh Fileserver (i need help)
 - [❌] File Delete
 - [❌] Rewrite authpage and related backends to be not trash
 - [❌] Rewrite html serving to use express.render
+
