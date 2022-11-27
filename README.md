@@ -1,4 +1,4 @@
-<img alt="banner" src="https://cdn.discordapp.com/attachments/914057325352976438/1046404299200147466/goofyFileserverimage.jpg" height="300px">
+![banner](https://media.discordapp.net/attachments/914057325352976438/1046406007091380345/goofy300.png)
 Join me as a contributor!
 Hit me up over at discord: Argus#5563
 ## Usage
