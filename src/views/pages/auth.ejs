@@ -1,0 +1,56 @@
+<html>
+	<head>	
+		<title>Login</title>
+		<link rel="stylesheet" href="../../css/style.css">
+	</head>
+	<body>
+		<body onload="getCookieData()">
+			<div class="center">
+			  <h1>Login</h1>
+			  <form method="post" action="/login">
+				<div class="txt_field">
+				  <input id="username" name="username" type="text" >
+				  <span></span>
+				  <label>Username</label>
+				</div>
+				<div class="txt_field">
+				  <input  id="password" name="password"type="password">
+				  <span></span>
+				  <label>Password</label>
+				</div>
+				<button type="submit" value="login">Login</button>
+				<p><br></p>
+				<label>Remember me</label>
+				<input type="checkbox" id="rememberMe" onClick="setCookie()"> 
+				<p><br></p>
+			  </form>
+			</div>
+		
+		  </body>
+		<script>
+			function setCookie(){
+				document.cookie="username="+ document.getElementById("username").value
+				document.cookie="password="+ document.getElementById("password").value
+			}
+			function getCookie(cname){
+				var name = cname + "="
+				var decodedCookie = decodeURIComponent(document.cookie)
+				var ca = decodedCookie.split(';')
+				for(var i= 0; i<ca.length; i++){
+					var c = ca[i]
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1)
+					}
+					if (c.indexOf(name)==0)  {
+						return c.substring(name.length, c.length)
+					}
+				}
+				return ""
+			}
+			function getCookieData(){
+				document.getElementById('username').value = getCookie('username')
+				document.getElementById('password').value = getCookie('password')
+			}
+		</script>
+	</body>
+</html>

@@ -1,8 +1,21 @@
+import dbms from "../db/dbms";
+import Logger from "../log/Logger";
+const c = new Logger("Authentication", "red");
+
 
 export default class Auth{
-    public getInfo(){
-        
-    }
+    public static authenticate(name: string, password: string) {
+        c.log("Authenticating user " + name);
+        if(dbms.checkCredentials(name, password)===true){
+            c.log("User authenticated");
+            return true;
+        }
+        else{
+            c.error("User not authenticated");
+            return false;
+        }
+
+      }
 }
 
 

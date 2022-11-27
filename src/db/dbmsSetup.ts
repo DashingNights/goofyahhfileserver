@@ -14,6 +14,9 @@ export default class dbmsSetup{
         });}
         else {
             c.warn("Database already exists, aborting creation");
+            //temporary
+            this.addCredentials("test", "123");
+            //
             return
         }
     }
@@ -26,6 +29,15 @@ export default class dbmsSetup{
           )
             `, ()  => {
             c.log("CREDENTIALS Table created");
+        });
+    }
+    static addCredentials(username: string, password: string){
+        let db= new sqlite3.Database('./credentials.db');
+        db.run(`INSERT INTO credentials VALUES ('${username}', '${password}')`, (err) => {
+            if (err) {
+                c.error("Getting error " + err);
+            }
+            c.log("Credentials added");
         });
     }
 }

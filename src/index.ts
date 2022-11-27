@@ -6,6 +6,7 @@ import { ParsedQs } from 'qs';
 import {Port} from '../config.json'
 import {Filedir} from '../config.json'
 import dbms from './db/dbms';
+var session = require('express-session');
 
 import Logger, { VerboseLevel } from './log/Logger';
 const c = new Logger("MAIN", "cyan");
@@ -13,7 +14,24 @@ const c = new Logger("MAIN", "cyan");
 import Auth  from './auth/Auth'
 const server = express()
 const port = Port
+server.set('view engine', 'ejs');
+server.set('views', path.join(__dirname, '/views/pages'));
 
+//unused, broken
+// server.use(express.urlencoded({ extended: false }))
+// server.use(session({
+//   resave: false, 
+//   saveUninitialized: false, 
+//   secret: '1234567890'
+// }));
+
+// server.use(function(req, res, next){
+//   var err = req.session.error;
+//   var msg = req.session.success;
+//   delete req.session.error;
+//   delete req.session.success;
+//   next();
+// });
 
 
 function sendIndexHtml(res: Response<any, Record<string, any>, number>) {
@@ -26,23 +44,8 @@ function sendIndexHtml(res: Response<any, Record<string, any>, number>) {
     })
 }
 
-function sendAuth(res: { status: (arg0: number, arg1: { "Content-Type": string; }) => void; write: (arg0: string | Buffer) => void; end: () => void; }) {
-    let indexFile = 'src/html/authpage.html';
-    fs.readFile(indexFile, (err, content) => {
-        if (err) {
-            res.status(404, {
-                'Content-Type': 'text'
-            });
-            res.write('File Not Found!');
-            res.end();
-        } else {
-            res.status(200, {
-                'Content-Type': 'text/html'
-            });
-            res.write(content)
-            res.end();
-        }
-    })
+function sendAuth(res: Response<any, Record<string, any>, number>) {
+    res.render('auth')
 }
 
 function sendListOfUploadedFiles(res: Response<any, Record<string, any>, number>) {
@@ -96,15 +99,36 @@ function sendInvalidRequest(res: Response<any, Record<string, any>, number>) {
     res.end();
     c.warn('Invalid Request')
 }
-
+function restrict(req: { body: { username: string; password: string; }; session: { error: string; }; }, res: { redirect: (arg0: string) => void; }, next: () => void) {
+    if (Auth.authenticate(req.body.username, req.body.password)==true) {
+      next();
+    } else {
+      req.session.error = 'Access denied!';
+      res.redirect('/login');
+    }
+  }
 
 server.listen(port, () => {
     c.log(`New express server listening on port ${port}`)
 })
 server.all('/', (req, res) => {
-    sendIndexHtml(res) 
-    c.log('Index.html sent')
+    res.redirect('/login');
 });
+//broken
+// server.all('/login', (req, res) =>{
+//     sendAuth(res);
+//     c.log('Initial page sent')
+//     if(Auth.authenticate(req.body.username, req.body.password)==true){
+//         req.session.regenerate(function(){
+//             res.redirect('back');
+//         });
+//           c.log('A user logged in')
+//     }else{
+//         req.session.error = 'Authentication failed, please check your username and password.';
+//         res.redirect('/login');
+//         c.warn('A user failed to log in')
+//     }
+// })
 //list soon to be deprecated
 server.all('/list', (req, res) => {
     sendListOfUploadedFiles(res)
@@ -120,7 +144,7 @@ server.all(/\/upload\/[^\/]+$/, (req, res) => {
     c.log('File uploaded')
 })
 server.get('/css/style.css', (req, res) => {
-    let indexFile = path.join('/css/style.css');
+    let indexFile = path.join(__dirname, '/css/style.css');
     fs.readFile(indexFile, (err, content) => {
         if (err) {
             res.status(404);
@@ -133,22 +157,18 @@ server.get('/css/style.css', (req, res) => {
         }
     })
 });
-//deprecated
-// server.get('/plsauth', (req, res, err) => {
-//     var takenslash = req.url.split('/')
-//             //console.log(req.url.split('/'))
-//         var fin = takenslash[2]
-//             //console.log(fin)
-//         var lfin = fin.split('!')
-//             //console.log(lfin)
-//         var username = String(lfin[0])
-//             //console.log(lfin[0])
-//         var password = String(lfin[1])
-//             //console.log(lfin[1])
-//     for (var i = 0; i < 1; i++){
-//         Auth.getInfo(username, password)
-//         console.log(Auth.getInfoStatus)
+// server.all('/plsauth', (req, res, err) => {
+//     if(Auth.authenticate(req.body.username, req.body.password)==true){
+//         req.session.regenerate(function(){
+//             res.redirect('back');
+//         });
+//           c.log('A user logged in')
+//     }else{
+//         req.session.error = 'Authentication failed, please check your username and password.';
+//         res.redirect('/login');
+//         c.warn('A user failed to log in')
 //     }
+
 // });
 
 
