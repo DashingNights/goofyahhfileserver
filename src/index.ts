@@ -5,12 +5,16 @@ import path from 'path';
 import { ParsedQs } from 'qs';
 import {Port} from '../config.json'
 import {Filedir} from '../config.json'
+import dbms from './db/dbms';
+
 import Logger, { VerboseLevel } from './log/Logger';
 const c = new Logger("MAIN", "cyan");
 
 import Auth  from './auth/Auth'
 const server = express()
 const port = Port
+
+
 
 function sendIndexHtml(res: Response<any, Record<string, any>, number>) {
     let indexFile = 'src/html/index.html';
@@ -161,4 +165,6 @@ server.get('/css/style.css', (req, res) => {
 //     }
 
 // });
+
+dbms.initializeDatabase();
 
