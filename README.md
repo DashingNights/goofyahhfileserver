@@ -1,11 +1,13 @@
-# goofyahhfileserver
-A Goofy ahh Fileserver (i need help)
+![banner](https://media.discordapp.net/attachments/914057325352976438/1046406007091380345/goofy300.png)
+--
+Join me as a contributor!
+Hit me up over at discord with a direct fReq link!: [discord.gg/g5ZSj8G7](https://discord.gg/g5ZSj8G7)
+
 ## Usage
 1. I like the part where it's useful 1
 2. I like the part where it's useful 2
 3. I like the part where it's useful 3
 ## Progress
-
 > ✅: currently complete || 🚧: in progress || ❌: not started at all
 >> ✅🚧: Done but needs improvement || ❌🚧: Not complete but in progress
 - [✅🚧] Credentials Database
