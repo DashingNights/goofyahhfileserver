@@ -1,10 +1,12 @@
 import sqlite3  from 'Sqlite3';
+import Logger, { VerboseLevel } from '../log/Logger';
+const c = new Logger("DBMS", "green");
 
 export default class dbmsSetup{
     static createDatabase() {
         var newdb = new sqlite3.Database('credentials.db', (err) => {
             if (err) {
-                console.log("Getting error " + err);
+                c.error("Getting error " + err);
             }
             this.createTables(newdb);
         });
@@ -17,7 +19,7 @@ export default class dbmsSetup{
             password CHAR(60)
           )
             `, ()  => {
-            console.log("CREDENTIALS Table created");
+            c.log("CREDENTIALS Table created");
         });
     }
 }

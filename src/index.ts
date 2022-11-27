@@ -5,6 +5,9 @@ import path from 'path';
 import { ParsedQs } from 'qs';
 import {Port} from '../config.json'
 import {Filedir} from '../config.json'
+import Logger, { VerboseLevel } from './log/Logger';
+const c = new Logger("MAIN", "cyan");
+
 import Auth  from './auth/Auth'
 const server = express()
 const port = Port
@@ -87,25 +90,30 @@ function sendInvalidRequest(res: Response<any, Record<string, any>, number>) {
     res.status(400);
     res.write('Invalid Request');
     res.end();
+    c.warn('Invalid Request')
 }
 
 
 server.listen(port, () => {
-    console.log(`New express server listening on port ${port}`)
+    c.log(`New express server listening on port ${port}`)
 })
 server.all('/', (req, res) => {
     sendIndexHtml(res) 
+    c.log('Index.html sent')
 });
 //list soon to be deprecated
 server.all('/list', (req, res) => {
     sendListOfUploadedFiles(res)
+    c.log('List of files sent')
 })
 
 server.get(/\/download\/[^\/]+$/, (req, res) => {
     sendUploadedFile(req.url, res);
+    c.log('File sent')
 })
 server.all(/\/upload\/[^\/]+$/, (req, res) => {
     saveUploadedFile(req, res)
+    c.log('File uploaded')
 })
 server.get('/css/style.css', (req, res) => {
     let indexFile = path.join('/css/style.css');
