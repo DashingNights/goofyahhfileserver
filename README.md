@@ -1,5 +1,4 @@
-# goofyahhfileserver
-A Goofy ahh Fileserver (i need help)
+![banner](https://cdn.discordapp.com/attachments/914057325352976438/1046404299200147466/goofyFileserverimage.jpg)
 Join me as a contributor!
 Hit me up over at discord: Argus#5563
 ## Usage
