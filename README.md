@@ -1,11 +1,12 @@
 # goofyahhfileserver
 A Goofy ahh Fileserver (i need help)
+Join me as a contributor!
+Hit me up over at discord: Argus#5563
 ## Usage
 1. I like the part where it's useful 1
 2. I like the part where it's useful 2
 3. I like the part where it's useful 3
 ## Progress
-
 > ✅: currently complete || 🚧: in progress || ❌: not started at all
 >> ✅🚧: Done but needs improvement || ❌🚧: Not complete but in progress
 - [✅🚧] Credentials Database
