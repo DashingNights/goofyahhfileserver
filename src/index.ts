@@ -7,7 +7,8 @@ import {Port} from '../config.json'
 import {Filedir} from '../config.json'
 import dbms from './db/dbms';
 var session = require('express-session');
-
+import expressServer from './express/server/expressServer';
+import routes from './express/routes/routes';
 import Logger, { VerboseLevel } from './log/Logger';
 const c = new Logger("MAIN", "cyan");
 
@@ -18,3 +19,5 @@ server.set('view engine', 'ejs');
 server.set('views', path.join(__dirname, '/views/pages'));
 
 dbms.initializeDatabase();
+expressServer.listen(port);
+routes.rootPath();
