@@ -23,6 +23,6 @@ Requires NodeJS and NPM
 - [❌] rewrite File Download without authentication
 - [❌] rewrite File Upload
 - [❌] File Delete
-- [❌] Rewrite authpage and related backends to be not trash
-- [❌] Rewrite html serving to use express.render
+- [❌🚧] Rewrite authpage and related backends to be not trash
+- [❌🚧] Rewrite html serving to use express.render
 
