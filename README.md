@@ -4,9 +4,13 @@ Join me as a contributor!
 Hit us up over at discord!: [https://discord.gg/RpTkYszMsd](https://discord.gg/RpTkYszMsd)
 
 ## Usage
-1. I like the part where it's useful 1
-2. I like the part where it's useful 2
-3. I like the part where it's useful 3
+```
+Requires NodeJS and NPM
+1. npm i
+//temporarily
+2. npm start
+//
+```
 ## Progress
 > ✅: currently complete || 🚧: in progress || ❌: not started at all
 >> ✅🚧: Done but needs improvement || ❌🚧: Not complete but in progress
