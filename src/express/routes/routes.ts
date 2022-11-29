@@ -6,7 +6,11 @@ export default class routes{
         server.all('/', (req, res) => {
             
         })
-        
     }
-    
+        //<<<---for login middleware --->>>
+    public static login(){
+        server.all('/login', (req, res) => {
+            
+        })
+    }
 }

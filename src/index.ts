@@ -21,3 +21,4 @@ server.set('views', path.join(__dirname, '/views/pages'));
 dbms.initializeDatabase();
 expressServer.listen(port);
 routes.rootPath();
+routes.login();
