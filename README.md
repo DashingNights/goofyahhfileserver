@@ -2,7 +2,7 @@
 --
 Join me as a contributor!
 Hit us up over at discord!: [https://discord.gg/RpTkYszMsd](https://discord.gg/RpTkYszMsd)
-Goodyahh fileserver is a website solution, web/api server and file hosting solution, in which is lightweight and "almost" entirely self contained. 
+> Goodyahh fileserver is a website solution, web/api server and file hosting solution, in which is lightweight and "almost" entirely self contained. 
 ## Usage
 ```
 Requires NodeJS and NPM
